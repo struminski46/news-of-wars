@@ -792,5 +792,60 @@
 })();
 </script>
 
+<script>
+(async function() {
+  // Each entry has a list of Wikipedia titles to try in order (fallback)
+  const imageMap = [
+    { id: 'img-iran-1', wikis: ["Kharg Island","Persian Gulf","Iran"] },
+    { id: 'img-iran-2', wikis: ["Abu Dhabi","Dubai","United Arab Emirates"] },
+    { id: 'img-iran-3', wikis: ["Ali Khamenei","Supreme Leader of Iran","Iran"] },
+    { id: 'img-iran-4', wikis: ["Tehran","Iran","Shia Islam"] },
+    { id: 'img-iran-5', wikis: ["Northrop Grumman B-2 Spirit","United States Air Force","F-35 Lightning II"] },
+    { id: 'img-ukr-1',  wikis: ["Kyiv","Ukraine","Maidan Nezalezhnosti"] },
+    { id: 'img-ukr-2',  wikis: ["Abu Dhabi","Ceasefire","Peace negotiation"] },
+    { id: 'img-ukr-3',  wikis: ["Vladimir Putin","Russia","Kremlin"] },
+    { id: 'img-ukr-4',  wikis: ["Russo-Ukrainian War","Bucha massacre","Battle of Kyiv (2022)"] },
+    { id: 'img-ukr-5',  wikis: ["FPV drone","Unmanned aerial vehicle","Drone warfare"] },
+  ];
+
+  // Collect all unique titles for a single batch API request
+  const allTitles = [...new Set(imageMap.flatMap(i => i.wikis))];
+  const byTitle = {};
+
+  try {
+    // Wikipedia allows up to 50 titles per request
+    for (let i = 0; i < allTitles.length; i += 20) {
+      const batch = allTitles.slice(i, i + 20).join('|');
+      const res = await fetch(
+        'https://en.wikipedia.org/w/api.php?action=query&titles=' +
+        encodeURIComponent(batch) +
+        '&prop=pageimages&format=json&pithumbsize=900&origin=*'
+      );
+      const data = await res.json();
+      for (const pid in data.query.pages) {
+        const p = data.query.pages[pid];
+        if (p.thumbnail) byTitle[p.title] = p.thumbnail.source;
+      }
+    }
+
+    imageMap.forEach(({ id, wikis }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      // Try each fallback title in order
+      for (const wiki of wikis) {
+        const url = byTitle[wiki];
+        if (url) {
+          el.src = url;
+          const ph = el.nextElementSibling;
+          if (ph && ph.classList.contains('img-placeholder')) ph.style.display = 'none';
+          el.style.display = 'block';
+          break;
+        }
+      }
+    });
+  } catch(e) { console.warn('Wikipedia image load failed:', e); }
+})();
+</script>
+
 </body>
 </html>

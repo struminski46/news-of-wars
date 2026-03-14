@@ -397,37 +397,53 @@
 
 <script>
 (async function() {
+  // Each entry has a list of Wikipedia titles to try in order (fallback)
   const imageMap = [
-    { id: 'img-iran-1', wiki: 'Strait of Hormuz' },
-    { id: 'img-iran-2', wiki: 'Boeing KC-135 Stratotanker' },
-    { id: 'img-iran-3', wiki: 'Mojtaba Khamenei' },
-    { id: 'img-iran-4', wiki: 'Donald Trump' },
-    { id: 'img-iran-5', wiki: '2021–2023 global energy crisis' },
-    { id: 'img-ukr-1',  wiki: 'Drone warfare in the Russian invasion of Ukraine' },
-    { id: 'img-ukr-2',  wiki: 'Shahed-136' },
-    { id: 'img-ukr-3',  wiki: 'Russo-Ukrainian War' },
-    { id: 'img-ukr-4',  wiki: 'Casualties of the Russo-Ukrainian War' },
-    { id: 'img-ukr-5',  wiki: 'Kharkiv' },
+    { id: 'img-iran-1', wikis: ["Strait of Hormuz","Persian Gulf","Hormuz Island"] },
+    { id: 'img-iran-2', wikis: ["Boeing KC-135 Stratotanker","United States Air Force","Aerial refueling"] },
+    { id: 'img-iran-3', wikis: ["Ali Khamenei","Supreme Leader of Iran","Iran"] },
+    { id: 'img-iran-4', wikis: ["Donald Trump","White House","United States"] },
+    { id: 'img-iran-5', wikis: ["Oil refinery","Petroleum","Energy crisis"] },
+    { id: 'img-ukr-1',  wikis: ["Unmanned aerial vehicle","FPV drone","Drone warfare"] },
+    { id: 'img-ukr-2',  wikis: ["Shahed-136","Kamikaze drone","Unmanned aerial vehicle"] },
+    { id: 'img-ukr-3',  wikis: ["Russo-Ukrainian War","Ukraine","Battle of Bakhmut"] },
+    { id: 'img-ukr-4',  wikis: ["Bucha massacre","Russo-Ukrainian War","Ukraine"] },
+    { id: 'img-ukr-5',  wikis: ["Kharkiv","Ukraine","Kharkiv Oblast"] },
   ];
-  const titles = imageMap.map(i => i.wiki).join('|');
+
+  // Collect all unique titles for a single batch API request
+  const allTitles = [...new Set(imageMap.flatMap(i => i.wikis))];
+  const byTitle = {};
+
   try {
-    const res = await fetch('https://en.wikipedia.org/w/api.php?action=query&titles=' +
-      encodeURIComponent(titles) + '&prop=pageimages&format=json&pithumbsize=900&origin=*');
-    const data = await res.json();
-    const byTitle = {};
-    for (const pid in data.query.pages) {
-      const p = data.query.pages[pid];
-      if (p.thumbnail) byTitle[p.title] = p.thumbnail.source;
+    // Wikipedia allows up to 50 titles per request
+    for (let i = 0; i < allTitles.length; i += 20) {
+      const batch = allTitles.slice(i, i + 20).join('|');
+      const res = await fetch(
+        'https://en.wikipedia.org/w/api.php?action=query&titles=' +
+        encodeURIComponent(batch) +
+        '&prop=pageimages&format=json&pithumbsize=900&origin=*'
+      );
+      const data = await res.json();
+      for (const pid in data.query.pages) {
+        const p = data.query.pages[pid];
+        if (p.thumbnail) byTitle[p.title] = p.thumbnail.source;
+      }
     }
-    imageMap.forEach(({ id, wiki }) => {
+
+    imageMap.forEach(({ id, wikis }) => {
       const el = document.getElementById(id);
       if (!el) return;
-      const url = byTitle[wiki];
-      if (url) {
-        el.src = url;
-        const ph = el.nextElementSibling;
-        if (ph && ph.classList.contains('img-placeholder')) ph.style.display = 'none';
-        el.style.display = 'block';
+      // Try each fallback title in order
+      for (const wiki of wikis) {
+        const url = byTitle[wiki];
+        if (url) {
+          el.src = url;
+          const ph = el.nextElementSibling;
+          if (ph && ph.classList.contains('img-placeholder')) ph.style.display = 'none';
+          el.style.display = 'block';
+          break;
+        }
       }
     });
   } catch(e) { console.warn('Wikipedia image load failed:', e); }
