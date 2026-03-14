@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News of Wars — Notícias de Conflitos Mundiais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-light: #122040;
+      --navy-mid: #1a3460;
+      --black: #000000;
+      --white: #ffffff;
+      --off-white: #f4f6f8;
+      --red: #c8102e;
+      --red-dark: #a00c24;
+      --gray: #8a9bb0;
+      --border: #1e3356;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      border-bottom: 3px solid var(--red);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: var(--red);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--red); }
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--white); }
+    .live-badge {
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--black) 0%, var(--navy-light) 60%, var(--navy-mid) 100%);
+      padding: 80px 2rem 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), #ff4d6d, var(--red));
+    }
+    .hero-label {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+    .hero h1 span { color: var(--red); }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--red);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 40s linear infinite;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    @keyframes ticker { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100%); } }
+    .ticker-sep { margin: 0 30px; opacity: 0.6; }
+
+    /* ── MAIN CONTENT ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 60px 2rem; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-tag {
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── ARCHIVE GRID ── */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .archive-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--white);
+      transition: transform 0.2s, border-color 0.2s;
+      display: block;
+    }
+    .archive-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--red);
+    }
+    .card-date-banner {
+      background: var(--red);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-date-banner .date-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .card-date-banner .date-info {
+      text-align: right;
+      font-size: 0.75rem;
+      font-weight: 600;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+    .card-body { padding: 20px; }
+    .card-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .card-body p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    .card-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .story-count {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+    .story-count span { color: var(--white); font-weight: 700; }
+    .read-btn {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ── SOURCES BAR ── */
+    .sources-bar {
+      background: var(--navy-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .sources-bar span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .source-link {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .source-link:hover { color: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 3px solid var(--red);
+      padding: 30px 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    footer strong { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">⚔</div>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </a>
+    <nav>
+      <a href="index.html">Arquivo</a>
+      <a href="#iran">Irã</a>
+      <a href="#ukraine">Ucrânia</a>
+    </nav>
+    <div class="live-badge">● AO VIVO</div>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-content">
+    🔴 URGENTE: EUA destroem alvos militares em Kharg Island, Irã &nbsp;
+    <span class="ticker-sep">|</span>
+    Novo líder supremo do Irã jura manter Estreito de Hormuz fechado &nbsp;
+    <span class="ticker-sep">|</span>
+    Mais de 3.000 mortos no conflito EUA-Israel-Irã &nbsp;
+    <span class="ticker-sep">|</span>
+    Putin explora distração ocidental com a guerra no Irã &nbsp;
+    <span class="ticker-sep">|</span>
+    Ucrânia recuperou mais território do que perdeu em fevereiro de 2026 &nbsp;
+    <span class="ticker-sep">|</span>
+    Drones com sensores de movimento usados pela Rússia na Ucrânia &nbsp;
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Cobertura Global de Conflitos</div>
+  <h1>News of <span>Wars</span></h1>
+  <p>Cobertura diária dos principais conflitos mundiais. Fontes: CNN, BBC e agências internacionais. Novas páginas geradas automaticamente todos os dias.</p>
+</section>
+
+<!-- SOURCES BAR -->
+<div class="sources-bar">
+  <span>Fontes Principais</span>
+  <a class="source-link" href="https://www.cnn.com/world" target="_blank">CNN World</a>
+  <a class="source-link" href="https://www.bbc.com/news/world" target="_blank">BBC News</a>
+  <a class="source-link" href="https://www.reuters.com" target="_blank">Reuters</a>
+  <a class="source-link" href="https://kyivindependent.com" target="_blank">Kyiv Independent</a>
+</div>
+
+<!-- ARCHIVE -->
+<div class="container">
+  <div class="section-title">
+    <div class="section-tag">Arquivo</div>
+    <h2>Edições Diárias</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="archive-grid" id="archiveGrid">
+    <!-- Card: 2026-03-14 (TODAY) -->
+    <a class="archive-card" href="2026-03-14.html">
+      <div class="card-date-banner">
+        <span class="date-big">14</span>
+        <div class="date-info">
+          MARÇO 2026<br/>SEXTA-FEIRA
+        </div>
+      </div>
+      <div class="card-body">
+        <h3>Edição de Hoje — 14 de Março de 2026</h3>
+        <p>EUA atacam Kharg Island no Irã · UAE alvo de drones · Novo líder supremo iraniano · Ucrânia recupera território · Conversas de paz estagnadas</p>
+      </div>
+      <div class="card-footer">
+        <span class="story-count"><span>10</span> notícias</span>
+        <span class="read-btn">Ler agora →</span>
+      </div>
+    </a>
+  </div>
+
+  <p style="margin-top:30px; font-size:0.8rem; color:var(--gray); text-align:center;">
+    Novas edições são geradas automaticamente todos os dias às <strong style="color:var(--white)">08:00</strong> (horário de Brasília).
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>News of Wars</strong> — Cobertura automatizada de conflitos mundiais<br/>
+    Fontes: <a href="https://www.cnn.com" target="_blank" style="color:var(--red);">CNN</a> ·
+    <a href="https://www.bbc.com" target="_blank" style="color:var(--red);">BBC</a> ·
+    Reuters · Kyiv Independent<br/>
+    <span style="font-size:0.7rem; opacity:0.5;">Gerado automaticamente por inteligência artificial. Sempre verifique as fontes originais.</span>
+  </p>
+</footer>
+
+</body>
+</html>
