@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News of Wars — Prévia de Logo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Playfair+Display:wght@900&display=swap" rel="stylesheet"/>
+  <style>
+    body { background: #0a1628; font-family: 'Inter', sans-serif; padding: 60px 40px; color: #fff; }
+    h1 { font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: #8a9bb0; margin-bottom: 50px; }
+    .options { display: flex; flex-direction: column; gap: 60px; }
+    .option { background: #122040; border: 1px solid #1e3356; border-radius: 12px; padding: 40px; }
+    .option h2 { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8a9bb0; margin-bottom: 6px; }
+    .option p { font-size: 0.82rem; color: #8a9bb0; margin-bottom: 30px; }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      background: #000;
+      border-bottom: 3px solid #c8102e;
+      padding: 0 2rem;
+      height: 70px;
+      gap: 12px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .logo-text span { color: #c8102e; }
+  </style>
+</head>
+<body>
+
+<h1>Prévia de Logo — Escolha uma opção</h1>
+
+<div class="options">
+
+  <!-- ══════════════════════════════════════════
+       OPÇÃO 1: DRONE (vista aérea top-down)
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <h2>Opção 1 — Silhueta de Drone (vista aérea)</h2>
+    <p>Drone militar estilo MQ-9 Reaper visto de cima, com asas largas e cauda em V. Fundo bicolor azul marinho / vermelho, silhueta branca.</p>
+    <div class="logo-wrap">
+      <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background split -->
+        <rect x="0"  y="0" width="22" height="44" rx="5" fill="#0a1628"/>
+        <rect x="22" y="0" width="22" height="44" rx="5" fill="#c8102e"/>
+        <rect x="18" y="0" width="8"  height="44" fill="#c8102e"/>
+        <rect x="18" y="0" width="4"  height="44" fill="#0a1628"/>
+        <!-- Border radius fix -->
+        <rect x="5" y="0" width="34" height="44" rx="5" fill="none"/>
+
+        <!-- Drone silhouette (top-down) centered -->
+        <!-- Fuselage: long horizontal ellipse -->
+        <ellipse cx="22" cy="22" rx="13" ry="3.2" fill="white"/>
+        <!-- Nose pod (front bulge) -->
+        <ellipse cx="33" cy="22" rx="3.5" ry="2.2" fill="white"/>
+        <!-- Left main wing -->
+        <polygon points="20,22 7,13 11,21" fill="white"/>
+        <!-- Right main wing -->
+        <polygon points="20,22 7,31 11,23" fill="white"/>
+        <!-- Left rear fin -->
+        <polygon points="12,21 8,16 14,21" fill="white"/>
+        <!-- Right rear fin -->
+        <polygon points="12,23 8,28 14,23" fill="white"/>
+        <!-- Satellite pod underneath nose -->
+        <circle cx="28" cy="24.5" r="1.8" fill="white"/>
+      </svg>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       OPÇÃO 2: MÍSSIL (perfil lateral, inclinado)
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <h2>Opção 2 — Silhueta de Míssil (perfil)</h2>
+    <p>Míssil de cruzeiro em voo, leve inclinação para cima, com cone de ponta, aletas traseiras e rastro de chama. Fundo bicolor.</p>
+    <div class="logo-wrap">
+      <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect x="0" y="0" width="44" height="44" rx="5" fill="#0a1628"/>
+        <clipPath id="clip1"><rect x="0" y="0" width="44" height="44" rx="5"/></clipPath>
+        <rect x="22" y="0" width="22" height="44" fill="#c8102e" clip-path="url(#clip1)"/>
+
+        <!-- Missile body (slightly angled: higher on right) -->
+        <!-- Main body rectangle, rotated ~-15 deg around center -->
+        <g transform="rotate(-15, 22, 22)">
+          <!-- Body -->
+          <rect x="9" y="19" width="24" height="6" rx="3" fill="white"/>
+          <!-- Nose cone -->
+          <polygon points="33,19 33,25 41,22" fill="white"/>
+          <!-- Rear fins top -->
+          <polygon points="11,19 7,11 14,19" fill="white"/>
+          <!-- Rear fins bottom -->
+          <polygon points="11,25 7,33 14,25" fill="white"/>
+          <!-- Small mid fin (top) -->
+          <polygon points="19,19 17,13 22,19" fill="white"/>
+          <!-- Flame trail -->
+          <polygon points="9,20 9,24 2,25 1,22 2,19" fill="white" opacity="0.7"/>
+        </g>
+      </svg>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       OPÇÃO 3: DOIS MÍSSEIS CRUZADOS (ícone estilo emblema)
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <h2>Opção 3 — Dois Mísseis Cruzados (emblema)</h2>
+    <p>Dois mísseis cruzados em diagonal, estilo emblema militar / brasão. Composição mais simétrica e formal, remetendo à simbologia de guerra clássica.</p>
+    <div class="logo-wrap">
+      <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="44" height="44" rx="5" fill="#0a1628"/>
+        <clipPath id="clip2"><rect x="0" y="0" width="44" height="44" rx="5"/></clipPath>
+        <rect x="22" y="0" width="22" height="44" fill="#c8102e" clip-path="url(#clip2)"/>
+
+        <!-- Missile 1: top-left to bottom-right (↘) -->
+        <g transform="rotate(45, 22, 22)">
+          <rect x="9" y="20" width="22" height="4" rx="2" fill="white"/>
+          <polygon points="31,20 31,24 37,22" fill="white"/>
+          <polygon points="11,20 7,15 13,20" fill="white"/>
+          <polygon points="11,24 7,29 13,24" fill="white"/>
+        </g>
+
+        <!-- Missile 2: top-right to bottom-left (↙) -->
+        <g transform="rotate(-45, 22, 22)">
+          <rect x="9" y="20" width="22" height="4" rx="2" fill="white"/>
+          <polygon points="31,20 31,24 37,22" fill="white"/>
+          <polygon points="11,20 7,15 13,20" fill="white"/>
+          <polygon points="11,24 7,29 13,24" fill="white"/>
+        </g>
+
+        <!-- Center circle (intersection point) -->
+        <circle cx="22" cy="22" r="3" fill="#c8102e"/>
+        <circle cx="22" cy="22" r="1.8" fill="white"/>
+      </svg>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       OPÇÃO 4: DRONE (perfil lateral)
+  ══════════════════════════════════════════ -->
+  <div class="option">
+    <h2>Opção 4 — Drone (perfil lateral)</h2>
+    <p>Drone militar visto de lado, com fuselagem alongada, asa central proeminente e cauda dupla — estilo MQ-9 Reaper em voo.</p>
+    <div class="logo-wrap">
+      <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="44" height="44" rx="5" fill="#0a1628"/>
+        <clipPath id="clip3"><rect x="0" y="0" width="44" height="44" rx="5"/></clipPath>
+        <rect x="22" y="0" width="22" height="44" fill="#c8102e" clip-path="url(#clip3)"/>
+
+        <!-- Drone lateral view -->
+        <!-- Main fuselage -->
+        <ellipse cx="21" cy="23" rx="14" ry="3" fill="white"/>
+        <!-- Nose bump -->
+        <ellipse cx="33.5" cy="22.5" rx="3" ry="2" fill="white"/>
+        <!-- Main wing (big, swept) -->
+        <polygon points="22,23 22,20 6,16 8,23" fill="white"/>
+        <!-- Wing underside -->
+        <polygon points="22,23 22,26 6,30 8,23" fill="white" opacity="0.5"/>
+        <!-- Rear boom left -->
+        <rect x="8" y="21" width="6" height="1.5" rx="0.5" fill="white" transform="rotate(-5,11,21.7)"/>
+        <!-- Tail fin left top -->
+        <polygon points="9,20 7,14 12,20" fill="white"/>
+        <!-- Tail fin left bottom -->
+        <polygon points="9,24 7,30 12,24" fill="white"/>
+        <!-- Sensor pod belly -->
+        <ellipse cx="26" cy="26" rx="2.5" ry="1.5" fill="white"/>
+      </svg>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:50px; font-size:0.78rem; color:#8a9bb0; text-align:center;">
+  Diga qual opção prefere (ou sugira variações) para aplicar nos arquivos do site.
+</p>
+
+</body>
+</html>
