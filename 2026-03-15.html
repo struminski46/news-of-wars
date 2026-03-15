@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News of Wars — 15 de Março de 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-light: #122040;
+      --navy-mid: #1a3460;
+      --black: #000000;
+      --white: #ffffff;
+      --off-white: #f4f6f8;
+      --red: #c8102e;
+      --red-dark: #a00c24;
+      --gray: #8a9bb0;
+      --gray-light: #b0bfd0;
+      --border: #1e3356;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      border-bottom: 3px solid var(--red);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+    .logo-text span { color: var(--red); }
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--white); }
+    .live-badge {
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.7;} }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--red);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 45s linear infinite;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    @keyframes ticker { 0%{transform:translateX(100vw);} 100%{transform:translateX(-100%);} }
+    .ticker-sep { margin: 0 28px; opacity: 0.6; }
+
+    /* ── DATE BANNER ── */
+    .date-banner {
+      background: linear-gradient(135deg, var(--black) 0%, var(--navy-light) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 2rem 30px;
+    }
+    .date-banner-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .edition-label {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .edition-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .edition-title span { color: var(--red); }
+    .edition-meta {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+    .edition-stats {
+      display: flex;
+      gap: 30px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .war-section {
+      border-top: 4px solid var(--navy-mid);
+      margin-top: 60px;
+    }
+    .war-header {
+      padding: 0 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .war-flag-strip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 28px 0 24px;
+    }
+    .war-icon {
+      font-size: 2.2rem;
+    }
+    .war-title-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    .war-title-block p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+    .war-accent {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    /* ── NEWS CARDS ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem 60px; }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    /* LEAD STORY */
+    .news-card-lead {
+      grid-column: span 8;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .news-card-lead:hover { border-color: var(--red); }
+
+    /* SIDE STORIES */
+    .news-card-side {
+      grid-column: span 4;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .news-card-side:hover { border-color: var(--red); }
+
+    /* BOTTOM ROW STORIES */
+    .news-card-small {
+      grid-column: span 4;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .news-card-small:hover { border-color: var(--red); }
+
+    .news-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: var(--navy-mid);
+      display: block;
+    }
+    .news-img-lead { height: 320px; }
+    .news-img-small { height: 160px; }
+
+    .img-placeholder {
+      width: 100%;
+      background: var(--navy-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--gray);
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 20px;
+    }
+    .img-placeholder .ph-icon { font-size: 2.5rem; opacity: 0.4; }
+
+    .news-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .news-tag {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .news-tag.tag-ukraine { background: #0057b7; }
+    .news-tag.tag-breaking { background: var(--red); }
+    .news-tag.tag-analysis { background: #2d4a6e; }
+    .news-tag.tag-diplomacy { background: #1a5c3a; }
+
+    .news-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .news-card-lead .news-body h3 { font-size: 1.6rem; }
+
+    .news-body p {
+      font-size: 0.84rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .news-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .news-source {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+    .news-source .src-name { color: var(--white); }
+    .news-link {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      transition: opacity 0.2s;
+    }
+    .news-link:hover { opacity: 0.7; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .news-card-lead,
+      .news-card-side,
+      .news-card-small { grid-column: span 12; }
+      .edition-stats { display: none; }
+    }
+    @media (max-width: 600px) {
+      .header-inner nav { display: none; }
+      .war-title-block h2 { font-size: 1.5rem; }
+    }
+
+    /* ── SOURCES BAR ── */
+    .sources-bar {
+      background: var(--navy-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .sources-bar span {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray);
+    }
+    .source-link {
+      color: var(--white); font-size: 0.82rem; font-weight: 700;
+      transition: color 0.2s;
+    }
+    .source-link:hover { color: var(--red); }
+
+    /* ── NAV PAGES ── */
+    .page-nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .page-nav a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--white); }
+    .page-nav .current {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 3px solid var(--red);
+      padding: 30px 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    footer strong { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon"><svg width="36" height="36" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="44" height="44" rx="5" fill="#0a1628"/>
+        <clipPath id="logoClip"><rect x="0" y="0" width="44" height="44" rx="5"/></clipPath>
+        <rect x="22" y="0" width="22" height="44" fill="#c8102e" clip-path="url(#logoClip)"/>
+        <g transform="rotate(-15, 22, 22)">
+          <rect x="9" y="19" width="24" height="6" rx="3" fill="white"/>
+          <polygon points="33,19 33,25 41,22" fill="white"/>
+          <polygon points="11,19 7,11 14,19" fill="white"/>
+          <polygon points="11,25 7,33 14,25" fill="white"/>
+          <polygon points="19,19 17,13 22,19" fill="white"/>
+          <polygon points="9,20 9,24 2,25 1,22 2,19" fill="white" opacity="0.7"/>
+        </g>
+      </svg></div>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </a>
+    <nav>
+      <a href="index.html">Arquivo</a>
+      <a href="#iran" class="active">Irã</a>
+      <a href="#ukraine">Ucrânia</a>
+    </nav>
+    <a href="https://www.youtube.com/playlist?list=PL8cUMXM_077dOmHdYvL5PozAktObBfs0e" target="_blank" class="live-badge">● AO VIVO</a>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-content">
+    🔴 Trump pede que China, França, Japão e Reino Unido enviem navios de guerra para o Estreito de Hormuz &nbsp;
+    <span class="ticker-sep">|</span>
+    Ataques pesados em Isfahan, Shiraz e Teerã no 15º dia de guerra — explosões em base aérea de Dezful &nbsp;
+    <span class="ticker-sep">|</span>
+    AIE: guerra causa "maior disrupção de petróleo da história" — Brent sobe 41,5% desde o início do conflito &nbsp;
+    <span class="ticker-sep">|</span>
+    USS Nimitz terá vida útil estendida até março de 2027 para apoiar operações no Golfo Pérsico &nbsp;
+    <span class="ticker-sep">|</span>
+    🇺🇦 Rússia lança 70 drones Shahed em 5 direções — defesa aérea ucraniana abate 90 dos 97 drones &nbsp;
+    <span class="ticker-sep">|</span>
+    Zelensky: alívio de sanções a Moscou dá US$ 10 bilhões à Rússia para continuar a guerra &nbsp;
+  </div>
+</div>
+
+<!-- DATE BANNER -->
+<div class="date-banner">
+  <div class="date-banner-inner">
+    <div>
+      <div class="edition-label">Edição Diária</div>
+      <h1 class="edition-title">15 de Março de <span>2026</span></h1>
+      <p class="edition-meta">Domingo · Atualizado às 08:00 BRT · Fontes: CNN, BBC, Reuters, ABC News</p>
+    </div>
+    <div class="edition-stats">
+      <div class="stat">
+        <div class="stat-num">10</div>
+        <div class="stat-label">Notícias</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Conflitos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15</div>
+        <div class="stat-label">Dias de guerra no Irã</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES BAR -->
+<div class="sources-bar">
+  <span>Fontes desta edição</span>
+  <a class="source-link" href="https://www.cnn.com/world/live-news/iran-war-us-israel-trump-03-14-26" target="_blank">CNN — Cobertura ao vivo</a>
+  <a class="source-link" href="https://www.bbc.com/news/world/middle_east" target="_blank">BBC — Oriente Médio</a>
+  <a class="source-link" href="https://www.cnn.com/world/europe/ukraine" target="_blank">CNN — Ucrânia</a>
+  <a class="source-link" href="https://abcnews.com/International/live-updates/iran-live-updates/?id=130893022" target="_blank">ABC News — Irã ao vivo</a>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━ IRAN WAR SECTION ━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="war-section" id="iran">
+  <div class="war-header">
+    <div class="war-flag-strip">
+      <div class="war-icon">🇮🇷</div>
+      <div class="war-title-block">
+        <h2>Guerra no Irã</h2>
+        <p>Conflito EUA–Israel–Irã · 15º dia de combates · Março de 2026</p>
+      </div>
+      <div class="war-accent"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="news-grid">
+
+      <!-- LEAD: Strait of Hormuz / Naval Coalition -->
+      <div class="news-card-lead">
+        <img id="img-iran-1"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Strait_of_Hormuz_EN.svg/1200px-Strait_of_Hormuz_EN.svg.png"
+          class="news-img news-img-lead"
+          alt="Mapa do Estreito de Hormuz — via marítima estratégica"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-lead" style="display:none;">
+          <span class="ph-icon">🚢</span>
+          <span>Estreito de Hormuz<br/>Crise de navegação · 15/03/2026</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-breaking">Breaking</span>
+          <h3>Trump pede que países enviem navios de guerra ao Estreito de Hormuz — China, França, Japão e Reino Unido são citados</h3>
+          <p>O presidente Donald Trump declarou no sábado que outros países enviarão ativos navais ao Estreito de Hormuz para reabrir as rotas de navegação bloqueadas pelo Irã. Em postagem no Truth Social, Trump citou China, França, Japão, Coreia do Sul e Reino Unido como nações que deveriam contribuir. No entanto, o Reino Unido e a China não confirmaram à CNN o envio de embarcações. O anúncio ocorre enquanto o estreito permanece efetivamente fechado ao tráfego de petroleiros — a artéria por onde normalmente passa cerca de 20% do petróleo mundial, ou aproximadamente 15 milhões de barris por dia. Em sinal de abertura parcial, o Irã permitiu que dois navios-tanque indianos carregando gás liquefeito de petróleo (GLP) passassem pelo estreito no início da manhã de sábado, segundo um oficial do Ministério das Relações Exteriores da Índia. A manobra foi interpretada como um possível aceno diplomático de Teerã, que busca evitar um isolamento total da Índia — nação com laços históricos com o Irã. Trump, por sua vez, mantém a postura de que a reabertura do estreito é condição inegociável para qualquer cessar-fogo. O preço médio da gasolina nos Estados Unidos subiu para US$ 3,63 por galão — o nível mais alto em 22 meses — enquanto o Brent acumula alta de 41,5% desde o início do conflito em 28 de fevereiro.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN / ABC News</span> · 15 mar 2026</span>
+          <a class="news-link" href="https://www.cnn.com/world/live-news/iran-war-us-israel-trump-03-14-26" target="_blank">Ler na CNN →</a>
+        </div>
+      </div>
+
+      <!-- SIDE: Airstrikes Day 15 -->
+      <div class="news-card-side">
+        <img id="img-iran-2"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Isfahan_Naghsh-e_Jahan_Square.jpg/1200px-Isfahan_Naghsh-e_Jahan_Square.jpg"
+          class="news-img"
+          alt="Praça Naghsh-e Jahan em Isfahan, Irã"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder" style="display:none; height:220px;">
+          <span class="ph-icon">💥</span>
+          <span>Ataques em Isfahan<br/>15º dia de conflito</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-breaking">Urgente</span>
+          <h3>Bombardeios pesados em Isfahan, Shiraz e sul de Teerã — 20 explosões perto de Dezful</h3>
+          <p>Na madrugada do 15º dia de conflito, ataques aéreos intensos foram registrados na área de Isfahan, com cerca de 20 explosões ouvidas próximo a Shiraz e detonações pesadas no sul de Teerã. A base aérea de Dezful também foi alvo. Um vídeo divulgado mostrou danos extensos causados por um ataque ao porto de Jask, na província de Hormozgan. Operações de resgate estavam em andamento em "vários locais de incidente" no centro de Israel após um novo ataque aéreo iraniano, com a polícia israelense inspecionando destroços de projéteis iranianos no sul de Tel Aviv.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN / ABC News</span></span>
+          <a class="news-link" href="https://abcnews.com/International/live-updates/iran-live-updates/?id=130893022" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: IEA Oil Crisis -->
+      <div class="news-card-small">
+        <img id="img-iran-3"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Oil_well.jpg/800px-Oil_well.jpg"
+          class="news-img news-img-small"
+          alt="Plataforma de petróleo — crise energética global"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🛢️</span>
+          <span>AIE: maior disrupção<br/>de petróleo da história</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-analysis">Análise</span>
+          <h3>AIE alerta para "maior disrupção de petróleo da história" — Brent sobe 41,5% e EUA liberam reservas estratégicas</h3>
+          <p>A Agência Internacional de Energia (AIE) advertiu que a guerra está causando a "maior disrupção de abastecimento na história do mercado global de petróleo". Em resposta ao choque, um grupo de países acordou liberar reservas estratégicas de emergência. O Brent acumula alta de 41,5% desde o início do conflito, e o petróleo americano (WTI) subiu 47%. A gasolina nos EUA chegou a US$ 3,63 o galão — novo recorde de 22 meses. Analistas alertam que mesmo o fim rápido da guerra não implicaria reabertura imediata do Estreito de Hormuz.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN / IEA</span></span>
+          <a class="news-link" href="https://www.cnn.com/world/live-news/iran-war-us-israel-trump-03-14-26" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: USS Nimitz Extended -->
+      <div class="news-card-small">
+        <img id="img-iran-4"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/USS_Nimitz_%28CVN-68%29_underway_in_the_Pacific_Ocean%2C_April_2008.jpg/1200px-USS_Nimitz_%28CVN-68%29_underway_in_the_Pacific_Ocean%2C_April_2008.jpg"
+          class="news-img news-img-small"
+          alt="Porta-aviões USS Nimitz CVN-68 em operação"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">⚓</span>
+          <span>USS Nimitz<br/>Extensão até março 2027</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag">Defesa</span>
+          <h3>USS Nimitz terá vida útil estendida até março de 2027 para apoiar operações no Golfo Pérsico</h3>
+          <p>A Marinha dos Estados Unidos anunciou que o porta-aviões USS Nimitz (CVN-68), um dos maiores navios de guerra do mundo, terá sua vida útil estendida até março de 2027 — quase um ano além do prazo original. O navio estava programado para ser descomissionado em maio de 2026. "A vida em serviço do USS Nimitz foi estendida para março de 2027", confirmou um oficial da Marinha à CNN. A decisão reflete a necessidade crescente de poder naval no Oriente Médio, especialmente diante da crise no Estreito de Hormuz.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN</span></span>
+          <a class="news-link" href="https://www.cnn.com/world/live-news/iran-war-us-israel-trump-03-14-26" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Lebanon Talks -->
+      <div class="news-card-small">
+        <img id="img-iran-5"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Beirut_-_Corniche.jpg/1200px-Beirut_-_Corniche.jpg"
+          class="news-img news-img-small"
+          alt="Beirute, capital do Líbano — Corniche"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🕊️</span>
+          <span>Líbano pede diálogo<br/>com Israel</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-diplomacy">Diplomacia</span>
+          <h3>Presidente do Líbano pede negociações com Israel após escalada do Hezbollah — Tel Aviv sem resposta oficial</h3>
+          <p>O presidente libanês Joseph Aoun apelou por conversações entre seu país e Israel após uma acentuada escalada nas hostilidades entre forças israelenses e o Hezbollah, grupo militante pró-iraniano. Não houve resposta oficial de Israel à iniciativa. Uma fonte israelense disse à CNN: "Reconhecemos o apelo do governo libanês pela diplomacia, mas eles não demonstraram capacidade ou vontade de desarmaro Hezbollah e deter os ataques contra comunidades israelenses. Israel quer terminar o trabalho no Líbano." O conflito no front norte segue como um dos focos secundários mais preocupantes da guerra.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN</span></span>
+          <a class="news-link" href="https://www.cnn.com/world/live-news/iran-war-us-israel-trump-03-14-26" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━ UKRAINE WAR SECTION ━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="war-section" id="ukraine">
+  <div class="war-header">
+    <div class="war-flag-strip">
+      <div class="war-icon">🇺🇦</div>
+      <div class="war-title-block">
+        <h2>Guerra na Ucrânia</h2>
+        <p>4º Ano do conflito Rússia–Ucrânia · Março de 2026</p>
+      </div>
+      <div class="war-accent" style="background: linear-gradient(90deg, #0057b7, transparent);"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="news-grid">
+
+      <!-- LEAD: Drone attacks -->
+      <div class="news-card-lead">
+        <img id="img-ukr-1"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Kyiv_montage.png/1200px-Kyiv_montage.png"
+          class="news-img news-img-lead"
+          alt="Kiev, capital da Ucrânia"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-lead" style="display:none;">
+          <span class="ph-icon">🚁</span>
+          <span>Ataque de drones russos<br/>Ucrânia · 15/03/2026</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-ukraine">Ucrânia</span>
+          <h3>Rússia lança 70 drones Shahed em 5 direções — Ucrânia abate 90 dos 97 lançados em 24 horas e registra 117 confrontos no front</h3>
+          <p>As forças russas lançaram neste domingo uma onda de 70 drones Shahed em cinco direções simultâneas contra o território ucraniano, mas as defesas aéreas da Ucrânia interceptaram os projéteis antes que causassem danos significativos. Em um balanço ampliado das últimas 24 horas, a defesa antiaérea ucraniana neutralizou 90 dos 97 drones lançados por forças russas em ataques iniciados na noite de 14 de março. As forças ucranianas também registraram 117 confrontos com tropas russas ao longo da linha de frente desde o início do dia — um número elevado que indica pressão constante sobre múltiplos setores. Em paralelo, a operadora ferroviária estatal Ukrzaliznytsia introduziu mudanças temporárias nas operações de trens na região de Sumy após um drone russo atingir um trem de passageiros. As perdas totais de combate das forças russas desde 24 de fevereiro de 2022 até 15 de março de 2026 chegaram a aproximadamente 1.279.170 militares, incluindo 740 mortos e feridos nas últimas 24 horas, de acordo com dados do Ministério da Defesa da Ucrânia. A análise de dados do ISW aponta que, durante a semana de 3 a 10 de março, as forças russas perderam 30 milhas quadradas de território ucraniano.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Kyiv Independent / CNN</span> · 15 mar 2026</span>
+          <a class="news-link" href="https://kyivindependent.com/" target="_blank">Ler no Kyiv Independent →</a>
+        </div>
+      </div>
+
+      <!-- SIDE: Trump sanctions / Zelensky -->
+      <div class="news-card-side">
+        <img id="img-ukr-2"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Donald_Trump_official_portrait_%282025%29.jpg/800px-Donald_Trump_official_portrait_%282025%29.jpg"
+          class="news-img"
+          alt="Donald Trump, presidente dos EUA"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder" style="display:none; height:220px;">
+          <span class="ph-icon">🇺🇸</span>
+          <span>Sanções ao petróleo russo<br/>Trump x Zelensky</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-diplomacy">Diplomacia</span>
+          <h3>Trump anuncia retorno das sanções ao petróleo russo após crise no Oriente Médio — Zelensky alerta: Rússia ganha US$ 10 bilhões</h3>
+          <p>O presidente Donald Trump declarou que as sanções ao petróleo russo impostas quando a Rússia invadiu a Ucrânia em 2022 serão restabelecidas assim que a crise no Oriente Médio for resolvida. O presidente ucraniano Volodymyr Zelensky reagiu com preocupação, alertando que o alívio de sanções a Moscou concede à Rússia US$ 10 bilhões adicionais para continuar a guerra. O Conselho Europeu também prorrogou por mais seis meses — até 15 de setembro de 2026 — as sanções individuais impostas por ações que comprometem a integridade territorial da Ucrânia.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN / Reuters</span></span>
+          <a class="news-link" href="https://www.cnn.com/world/europe/ukraine" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Kerch Strait Strike -->
+      <div class="news-card-small">
+        <img id="img-ukr-3"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Kerch_Strait_Bridge_2018.jpg/1200px-Kerch_Strait_Bridge_2018.jpg"
+          class="news-img news-img-small"
+          alt="Ponte do Estreito de Kerch — Crimeia"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🚢</span>
+          <span>Ataque no Estreito de Kerch<br/>2 navios russos destruídos</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-ukraine">Marinha</span>
+          <h3>Ucrânia afirma ataque "bem-sucedido" contra 2 navios russos que transportavam armas pelo Estreito de Kerch</h3>
+          <p>A agência de inteligência militar da Ucrânia (HUR) descreveu como "bem-sucedido" um ataque contra dois navios russos que transportavam armas e equipamentos pelo Estreito de Kerch. Segundo a inteligência ucraniana, as duas embarcações faziam parte do serviço de ferry da Rússia em Kerch, considerado "parte fundamental" do sistema logístico russo de abastecimento da península da Crimeia. O ataque representa um golpe nas linhas de suprimento russas numa região estratégica para o conflito. Detalhes sobre o método de ataque e os danos aos navios ainda estavam sendo avaliados.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Kyiv Independent</span></span>
+          <a class="news-link" href="https://kyivindependent.com/" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Zaporizhzhia airstrike -->
+      <div class="news-card-small">
+        <img id="img-ukr-4"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Zaporizhzhia_aerial_view.jpg/1200px-Zaporizhzhia_aerial_view.jpg"
+          class="news-img news-img-small"
+          alt="Vista aérea de Zaporizhzhia, Ucrânia"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">💔</span>
+          <span>Zaporizhzhia<br/>19 feridos — incluindo crianças</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-breaking">Urgente</span>
+          <h3>Ataque aéreo russo em Zaporizhzhia fere 19 pessoas — incluindo crianças — e deixa 1 morto</h3>
+          <p>O número de feridos em um ataque aéreo russo contra Zaporizhzhia subiu para 19, incluindo várias crianças, de acordo com autoridades locais. Um óbito já havia sido confirmado. A Rússia bombardeou residências na cidade em 14 de março, dando início a uma nova rodada de ataques que continuou no dia seguinte. Zaporizhzhia, situada próxima ao maior complexo de energia nuclear da Europa, é alvo frequente de bombardeios russos e representa um dos pontos mais críticos da guerra para a segurança nuclear global.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Kyiv Independent / CNN</span></span>
+          <a class="news-link" href="https://kyivindependent.com/" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Ukrainian POWs sentenced -->
+      <div class="news-card-small">
+        <img id="img-ukr-5"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Kursk_Oblast_in_Russia.svg/1200px-Kursk_Oblast_in_Russia.svg.png"
+          class="news-img news-img-small"
+          alt="Mapa da região de Kursk — incursão ucraniana de 2024"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">⚖️</span>
+          <span>5 soldados ucranianos<br/>condenados pela Rússia</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-analysis">Judiciário</span>
+          <h3>Rússia condena 5 prisioneiros de guerra ucranianos a 15–18 anos por participação na incursão de Kursk em 2024</h3>
+          <p>A Rússia condenou cinco prisioneiros de guerra ucranianos a penas de 15 a 18 anos de prisão por sua participação na incursão ucraniana na região russa de Kursk, ocorrida em 2024. A sentença marca mais uma das crescentes acusações judiciais russas contra militares ucranianos mantidos em cativeiro. A ofensiva ucraniana em Kursk foi um dos movimentos mais audaciosos da guerra — a primeira invasão de território russo desde a Segunda Guerra Mundial. A Ucrânia capturou temporariamente centenas de quilômetros quadrados antes de ser forçada a recuar sob pressão das forças russas e norte-coreanas.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Reuters / BBC</span></span>
+          <a class="news-link" href="https://www.bbc.com/news/world/europe" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PAGE NAV -->
+<div class="page-nav">
+  <a href="2026-03-14.html">← Edição anterior (14/03)</a>
+  <span class="current">15 de Março de 2026</span>
+  <a href="index.html">Arquivo completo →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>News of Wars</strong> — Cobertura automatizada de conflitos mundiais<br/>
+    Fontes: <a href="https://www.cnn.com" target="_blank" style="color:var(--red);">CNN</a> ·
+    <a href="https://www.bbc.com" target="_blank" style="color:var(--red);">BBC</a> ·
+    <a href="https://abcnews.go.com" target="_blank" style="color:var(--red);">ABC News</a> ·
+    Reuters · Kyiv Independent<br/>
+    <span style="font-size:0.7rem; opacity:0.5;">Gerado automaticamente por inteligência artificial. Sempre verifique as fontes originais.</span>
+  </p>
+</footer>
+
+</body>
+</html>
