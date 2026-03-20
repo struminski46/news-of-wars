@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>News of Wars — 20 de Março de 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-light: #122040;
+      --navy-mid: #1a3460;
+      --black: #000000;
+      --white: #ffffff;
+      --off-white: #f4f6f8;
+      --red: #c8102e;
+      --red-dark: #a00c24;
+      --gray: #8a9bb0;
+      --gray-light: #b0bfd0;
+      --border: #1e3356;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--black);
+      border-bottom: 3px solid var(--red);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+    .logo-text span { color: var(--red); }
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: var(--gray);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--white); }
+    .live-badge {
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.7;} }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--red);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 45s linear infinite;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    @keyframes ticker { 0%{transform:translateX(100vw);} 100%{transform:translateX(-100%);} }
+    .ticker-sep { margin: 0 28px; opacity: 0.6; }
+
+    /* ── DATE BANNER ── */
+    .date-banner {
+      background: linear-gradient(135deg, var(--black) 0%, var(--navy-light) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 2rem 30px;
+    }
+    .date-banner-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .edition-label {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .edition-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .edition-title span { color: var(--red); }
+    .edition-meta {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 8px;
+    }
+    .edition-stats {
+      display: flex;
+      gap: 30px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .war-section {
+      border-top: 4px solid var(--navy-mid);
+      margin-top: 60px;
+    }
+    .war-header {
+      padding: 0 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .war-flag-strip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 28px 0 24px;
+    }
+    .war-icon {
+      font-size: 2.2rem;
+    }
+    .war-title-block h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    .war-title-block p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+    .war-accent {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    /* ── NEWS CARDS ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem 60px; }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    /* LEAD STORY */
+    .news-card-lead {
+      grid-column: span 8;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .news-card-lead:hover { border-color: var(--red); }
+
+    /* SIDE STORIES */
+    .news-card-side {
+      grid-column: span 4;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .news-card-side:hover { border-color: var(--red); }
+
+    /* BOTTOM ROW STORIES */
+    .news-card-small {
+      grid-column: span 4;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .news-card-small:hover { border-color: var(--red); }
+
+    .news-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: var(--navy-mid);
+      display: block;
+    }
+    .news-img-lead { height: 320px; }
+    .news-img-small { height: 160px; }
+
+    .img-placeholder {
+      width: 100%;
+      background: var(--navy-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--gray);
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 20px;
+    }
+    .img-placeholder .ph-icon { font-size: 2.5rem; opacity: 0.4; }
+
+    .news-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .news-tag {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    .news-tag.tag-ukraine { background: #0057b7; }
+    .news-tag.tag-breaking { background: var(--red); }
+    .news-tag.tag-analysis { background: #2d4a6e; }
+    .news-tag.tag-diplomacy { background: #1a5c3a; }
+
+    .news-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .news-card-lead .news-body h3 { font-size: 1.6rem; }
+
+    .news-body p {
+      font-size: 0.84rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .news-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .news-source {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+    .news-source .src-name { color: var(--white); }
+    .news-link {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      transition: opacity 0.2s;
+    }
+    .news-link:hover { opacity: 0.7; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .news-card-lead,
+      .news-card-side,
+      .news-card-small { grid-column: span 12; }
+      .edition-stats { display: none; }
+    }
+    @media (max-width: 600px) {
+      .header-inner nav { display: none; }
+      .war-title-block h2 { font-size: 1.5rem; }
+    }
+
+    /* ── SOURCES BAR ── */
+    .sources-bar {
+      background: var(--navy-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .sources-bar span {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray);
+    }
+    .source-link {
+      color: var(--white); font-size: 0.82rem; font-weight: 700;
+      transition: color 0.2s;
+    }
+    .source-link:hover { color: var(--red); }
+
+    /* ── NAV PAGES ── */
+    .page-nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .page-nav a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .page-nav a:hover { color: var(--white); }
+    .page-nav .current {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 3px solid var(--red);
+      padding: 30px 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    footer strong { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon"><svg width="36" height="36" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="44" height="44" rx="5" fill="#0a1628"/>
+        <clipPath id="logoClip"><rect x="0" y="0" width="44" height="44" rx="5"/></clipPath>
+        <rect x="22" y="0" width="22" height="44" fill="#c8102e" clip-path="url(#logoClip)"/>
+        <g transform="rotate(-15, 22, 22)">
+          <rect x="9" y="19" width="24" height="6" rx="3" fill="white"/>
+          <polygon points="33,19 33,25 41,22" fill="white"/>
+          <polygon points="11,19 7,11 14,19" fill="white"/>
+          <polygon points="11,25 7,33 14,25" fill="white"/>
+          <polygon points="19,19 17,13 22,19" fill="white"/>
+          <polygon points="9,20 9,24 2,25 1,22 2,19" fill="white" opacity="0.7"/>
+        </g>
+      </svg></div>
+      <span class="logo-text">News of <span>Wars</span></span>
+    </a>
+    <nav>
+      <a href="index.html">Arquivo</a>
+      <a href="#iran" class="active">Irã</a>
+      <a href="#ukraine">Ucrânia</a>
+    </nav>
+    <a href="https://www.youtube.com/playlist?list=PL8cUMXM_077dOmHdYvL5PozAktObBfs0e" target="_blank" class="live-badge">● AO VIVO</a>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-content">
+    🔴 Nowruz sob bombas — Israel ataca Teerã no Ano Novo Persa; Irã retalia com drones no Golfo &nbsp;
+    <span class="ticker-sep">|</span>
+    Suíça suspende exportações de armas aos EUA citando "neutralidade" &nbsp;
+    <span class="ticker-sep">|</span>
+    EUA: mais de 7.000 alvos destruídos no Irã; 2.200 fuzileiros navais a caminho do Oriente Médio &nbsp;
+    <span class="ticker-sep">|</span>
+    Arábia Saudita intercepta míssil sobre região de Al Jouf; alerta máximo no Golfo Pérsico &nbsp;
+    <span class="ticker-sep">|</span>
+    🇺🇦 Zelensky anuncia equipe de negociação a caminho dos EUA para reunião neste sábado &nbsp;
+    <span class="ticker-sep">|</span>
+    UE aprova empréstimo de € 90 bilhões à Ucrânia para 2026–2027 &nbsp;
+  </div>
+</div>
+
+<!-- DATE BANNER -->
+<div class="date-banner">
+  <div class="date-banner-inner">
+    <div>
+      <div class="edition-label">Edição Diária</div>
+      <h1 class="edition-title">20 de Março de <span>2026</span></h1>
+      <p class="edition-meta">Sexta-feira · Nowruz — Ano Novo Persa · Atualizado às 08:00 BRT · Fontes: CNN, BBC, Al Jazeera, NBC, PBS</p>
+    </div>
+    <div class="edition-stats">
+      <div class="stat">
+        <div class="stat-num">10</div>
+        <div class="stat-label">Notícias</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Conflitos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">21</div>
+        <div class="stat-label">Dias de guerra no Irã</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCES BAR -->
+<div class="sources-bar">
+  <span>Fontes desta edição</span>
+  <a class="source-link" href="https://www.cnn.com/world/live-news/iran-war-us-israel-trump-03-19-26" target="_blank">CNN — Cobertura ao vivo</a>
+  <a class="source-link" href="https://www.bbc.com/news/world/middle_east" target="_blank">BBC — Oriente Médio</a>
+  <a class="source-link" href="https://www.cnn.com/world/europe/ukraine" target="_blank">CNN — Ucrânia</a>
+  <a class="source-link" href="https://www.bbc.com/news/world/europe" target="_blank">BBC — Europa</a>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━ IRAN WAR SECTION ━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="war-section" id="iran">
+  <div class="war-header">
+    <div class="war-flag-strip">
+      <div class="war-icon">🇮🇷</div>
+      <div class="war-title-block">
+        <h2>Guerra no Irã</h2>
+        <p>Conflito EUA–Israel–Irã · 21º dia de combates · Nowruz — Ano Novo Persa</p>
+      </div>
+      <div class="war-accent"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="news-grid">
+
+      <!-- LEAD: Nowruz sob bombas -->
+      <div class="news-card-lead">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Flag_of_Iran.svg/800px-Flag_of_Iran.svg.png"
+          class="news-img news-img-lead"
+          alt="Bandeira do Irã — Nowruz 2026 marcado por guerra"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-lead" style="display:none;">
+          <span class="ph-icon">🎆</span>
+          <span>Nowruz sob bombas<br/>Irã · 20/03/2026</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-breaking">Breaking</span>
+          <h3>Israel ataca Teerã no Nowruz; Irã retalia com nova onda de drones e mísseis contra instalações energéticas do Golfo</h3>
+          <p>No dia do Nowruz — o Ano Novo Persa, celebrado em 20 de março —, Israel lançou ataques aéreos contra Teerã e outras cidades iranianas, em uma nova escalada do conflito que já dura 21 dias. Em resposta, o Irã disparou drones e mísseis contra instalações petrolíferas e de gás natural nos Emirados Árabes Unidos, Arábia Saudita e Qatar. A festividade persa, que marca a chegada da primavera e reúne famílias há milênios, foi ensombrecida por sirenes de ataque aéreo e explosões. A CNN reportou que Israel também eliminou o porta-voz do Corpo de Guardas da Revolução Islâmica (IRGC), mas Teerã desafiou as baixas e reafirmou que o conflito continuará. Iranianos na diáspora marcaram o Nowruz com o coração pesado, sem conseguir contato com familiares no país. Analistas descrevem o Ano Novo Persa de 2026 como o mais sombrio da história moderna do Irã, com mais de 2.000 mortes confirmadas desde o início do conflito em 1º de março.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN / NBC News</span> · 20 mar 2026</span>
+          <a class="news-link" href="https://www.nbcnews.com/world/iran/live-blog/live-updates-iran-war-gulf-energy-attacks-israel-trump-nowruz-rcna264408" target="_blank">Ler na NBC →</a>
+        </div>
+      </div>
+
+      <!-- SIDE: Suíça suspende exportações de armas -->
+      <div class="news-card-side">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/800px-Flag_of_Switzerland_%28Pantone%29.svg.png"
+          class="news-img"
+          alt="Bandeira da Suíça — suspensão de exportações de armas"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder" style="display:none; height:220px;">
+          <span class="ph-icon">🇨🇭</span>
+          <span>Suíça suspende<br/>exportações de armas aos EUA</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-diplomacy">Diplomacia</span>
+          <h3>Suíça suspende exportações de armas aos EUA, citando "neutralidade" diante dos ataques ao Irã</h3>
+          <p>A Suíça anunciou que não emitirá licenças para empresas exportarem armas aos Estados Unidos em razão dos ataques americanos ao Irã. O país europeu invocou sua tradicional política de neutralidade como justificativa. A medida representa uma ruptura diplomática incomum entre Berna e Washington e sinaliza crescente preocupação internacional com o conflito no Oriente Médio. A decisão suíça segue um padrão de reação crítica entre países europeus às operações militares lideradas pelos EUA.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Al Jazeera</span></span>
+          <a class="news-link" href="https://www.aljazeera.com/news/liveblog/2026/3/20/iran-war-live-tehran-warns-of-intensified-strikes-if-energy-sites-targeted" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: EUA destroem 7.000 alvos no Irã -->
+      <div class="news-card-small">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/US-MarineCorps-Logo.svg/800px-US-MarineCorps-Logo.svg.png"
+          class="news-img news-img-small"
+          alt="Fuzileiros Navais dos EUA — reforço ao Oriente Médio"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🇺🇸</span>
+          <span>EUA: 7.000 alvos destruídos<br/>2.200 fuzileiros a caminho</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag">EUA</span>
+          <h3>Pentágono: EUA destruíram mais de 7.000 alvos no Irã; 2.200 fuzileiros navais a caminho do Oriente Médio</h3>
+          <p>O secretário de Defesa Pete Hegseth afirmou que os EUA já destruíram mais de 7.000 alvos militares no Irã. O presidente dos EUA confirmou que as operações continuam se aprofundando no território iraniano. Em paralelo, o Pentágono acelerou o envio da 11ª Unidade Expedicionária de Fuzileiros Navais (MEU), com 2.200 militares, a partir de San Diego. O Pentágono também solicitou ao Congresso um orçamento adicional de US$ 200 bilhões para sustentar as operações militares no conflito.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">NPR / CNN</span></span>
+          <a class="news-link" href="https://www.npr.org/2026/03/19/nx-s1-5753520/iran-israel-gas-field-attacks" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Arábia Saudita intercepta míssil em Al Jouf -->
+      <div class="news-card-small">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/800px-Flag_of_Saudi_Arabia.svg.png"
+          class="news-img news-img-small"
+          alt="Arábia Saudita intercepta míssil balístico iraniano"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🛡️</span>
+          <span>Arábia Saudita<br/>intercepta míssil em Al Jouf</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-breaking">Urgente</span>
+          <h3>Arábia Saudita intercepta míssil balístico iraniano sobre a região de Al Jouf e reserva o direito de retaliar</h3>
+          <p>No dia 20 de março, a Arábia Saudita interceptou com sucesso um míssil balístico iraniano sobre sua região norte de Al Jouf. Riyadh declarou que "reserva o direito de tomar ações militares" contra o Irã caso necessário. As tensões no Golfo Pérsico permanecem em nível máximo após os ataques de represália iranianos às refinarias de Riyadh no dia anterior. O Estreito de Hormuz continua efetivamente fechado ao tráfego de navios-tanque, afetando 20% do petróleo mundial.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Al Jazeera / CBS</span></span>
+          <a class="news-link" href="https://www.cbsnews.com/live-updates/iran-war-israel-strike-south-pars-gas-field-trump-threat-oil-gas-prices/" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Nowruz e a diáspora iraniana -->
+      <div class="news-card-small">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Haft-sin_table_%28Nowruz%29.jpg/800px-Haft-sin_table_%28Nowruz%29.jpg"
+          class="news-img news-img-small"
+          alt="Mesa do Haft-Sin, tradição do Nowruz persa"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🌿</span>
+          <span>Nowruz 2026<br/>esperança e medo</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-analysis">Análise</span>
+          <h3>"Esperança e medo": iranians celebram Nowruz com luto pelo fim das comunicações com o país</h3>
+          <p>O Nowruz de 2026 ganhou um significado completamente diferente para os iranianos, tanto dentro quanto fora do país. Segundo reportagem da CNN, a festividade que representa renovação e esperança foi marcada por angústia, silêncio das famílias e incerteza sobre o futuro. A diáspora iraniana em Paris, Nova York e outras cidades do mundo reuniu-se em cerimônias emotivas, sem conseguir manter contato com parentes no Irã devido à interrupção das telecomunicações. As autoridades iranianas continuaram a retórica de resistência mesmo sob bombardeios intensos.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CNN / NPR</span></span>
+          <a class="news-link" href="https://www.cnn.com/2026/03/20/world/nowruz-iran-conflict-fear-new-year-intl" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━ UKRAINE WAR SECTION ━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="war-section" id="ukraine">
+  <div class="war-header">
+    <div class="war-flag-strip">
+      <div class="war-icon">🇺🇦</div>
+      <div class="war-title-block">
+        <h2>Guerra na Ucrânia</h2>
+        <p>Conflito Rússia–Ucrânia · 5º ano de guerra · Março de 2026</p>
+      </div>
+      <div class="war-accent"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="news-grid">
+
+      <!-- LEAD: Zelensky envia equipe aos EUA -->
+      <div class="news-card-lead">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Ukraine.svg/800px-Flag_of_Ukraine.svg.png"
+          class="news-img news-img-lead"
+          alt="Bandeira da Ucrânia — equipe de negociação vai aos EUA"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-lead" style="display:none;">
+          <span class="ph-icon">🕊️</span>
+          <span>Negociações de paz<br/>Ucrânia — EUA</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-diplomacy">Diplomacia</span>
+          <h3>Zelensky anuncia que equipe de negociação ucraniana parte para os EUA; reunião com enviados americanos marcada para sábado</h3>
+          <p>O presidente ucraniano Volodymyr Zelensky anunciou nesta sexta-feira que uma equipe de negociação da Ucrânia está a caminho dos Estados Unidos para uma reunião agendada para sábado, 21 de março, com os enviados americanos Steve Witkoff e Jared Kushner. Os EUA haviam proposto sediar o próximo ciclo de negociações entre ucranianos, americanos e russos, mas Moscou recusou-se a enviar uma delegação ao local proposto pelos americanos. Zelensky disse que a Ucrânia "aguarda resposta dos americanos" sobre se os EUA mudarão o país-sede das negociações ou se a Rússia confirmará participação. Os EUA haviam adiado as negociações anteriores por conta do conflito no Oriente Médio. Zelensky também revelou uma oferta de cooperação em defesa de US$ 35 a 50 bilhões, dando ao governo americano acesso à tecnologia de aproximadamente 200 empresas ucranianas de drones, inteligência artificial e guerra eletrônica. O prazo imposto pelos EUA para um acordo de paz é o início do verão, em junho de 2026.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">PBS News / CBS News</span> · 20 mar 2026</span>
+          <a class="news-link" href="https://www.pbs.org/newshour/world/zelenskyy-says-ukraine-is-waiting-on-u-s-and-russia-to-set-the-next-round-of-peace-talks" target="_blank">Ler na PBS →</a>
+        </div>
+      </div>
+
+      <!-- SIDE: UE aprova €90 bilhões -->
+      <div class="news-card-side">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/800px-Flag_of_Europe.svg.png"
+          class="news-img"
+          alt="Bandeira da União Europeia — apoio à Ucrânia"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder" style="display:none; height:220px;">
+          <span class="ph-icon">🇪🇺</span>
+          <span>UE reafirma apoio<br/>€ 90 bilhões à Ucrânia</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-diplomacy">Diplomacia</span>
+          <h3>Conselho Europeu reafirma apoio à Ucrânia e aprova empréstimo de € 90 bilhões para 2026–2027</h3>
+          <p>Na cúpula de 19 de março em Bruxelas, o Conselho Europeu reafirmou "apoio firme e inabalável" à independência, soberania e integridade territorial da Ucrânia. Os líderes europeus aprovaram o empréstimo de € 90 bilhões para 2026–2027, com a primeira parcela prevista para início de abril. A UE também pediu às nações não-membros que contribuam com os € 30 bilhões restantes necessários. A reunião reforçou a importância de acelerar o fornecimento de sistemas de defesa aérea, munição, drones e mísseis à Ucrânia.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Conselho da UE</span></span>
+          <a class="news-link" href="https://www.consilium.europa.eu/en/press/press-releases/2026/03/19/european-council-19-march-2026-ukraine/" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: 201 confrontos em um dia – frentes mais quentes -->
+      <div class="news-card-small">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Pokrovsk_in_Donetsk_Oblast.png/800px-Pokrovsk_in_Donetsk_Oblast.png"
+          class="news-img news-img-small"
+          alt="Pokrovsk, Donetsk — frente de combate mais intensa"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">⚔️</span>
+          <span>201 confrontos em um dia<br/>Pokrovsk e Kostiantynivka</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-breaking">Campo de batalha</span>
+          <h3>201 confrontos armados em 24 horas — Pokrovsk e Kostiantynivka permanecem os setores mais intensos</h3>
+          <p>Em 19 de março, as forças de defesa ucranianas registraram 201 confrontos de combate com tropas russas ao longo da linha de frente. Os setores de Kostiantynivka e Pokrovsk concentraram a maior pressão inimiga, com 46 ataques russos apenas em Kostiantynivka. As baixas russas acumuladas desde 24 de fevereiro de 2022 chegaram a aproximadamente 1.285.700 militares, com 1.610 mortos nas últimas 24 horas. A Rússia definiu a captura total da região de Donetsk como prioridade máxima para 2026.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Ukrinform / EMPR</span></span>
+          <a class="news-link" href="https://empr.media/news/war/russia-ukraine-war-updates-key-developments-as-of-march-18-2026/" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Eslováquia declara emergência após corte de petróleo russo -->
+      <div class="news-card-small">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/800px-Flag_of_Slovakia.svg.png"
+          class="news-img news-img-small"
+          alt="Bandeira da Eslováquia — crise energética após corte de petróleo russo"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">⚡</span>
+          <span>Eslováquia<br/>declara emergência energética</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-analysis">Análise</span>
+          <h3>Eslováquia declara "estado de emergência" no setor de petróleo após corte de fornecimento russo via Ucrânia</h3>
+          <p>O primeiro-ministro eslovaco Robert Fico afirmou que a Eslováquia pode adotar novas medidas contra a Ucrânia após a interrupção do fornecimento de petróleo russo via território ucraniano. Fico disse que o corte desencadeou um "estado de emergência" no setor de petróleo do país. A disputa energética acirra as tensões já existentes entre Bratislava e Kiev, com a Eslováquia sendo um dos poucos países europeus a manter uma postura mais simpática à Rússia durante o conflito.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">Reuters / BBC</span></span>
+          <a class="news-link" href="https://www.bbc.com/news/world/europe" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+      <!-- SMALL: Prazo de junho para paz; Rússia recusa negociações -->
+      <div class="news-card-small">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/800px-Flag_of_Russia.svg.png"
+          class="news-img news-img-small"
+          alt="Rússia recusa negociações nos EUA — prazo de junho em risco"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="img-placeholder news-img-small" style="display:none;">
+          <span class="ph-icon">🗓️</span>
+          <span>Prazo de junho<br/>Rússia recusa negociações</span>
+        </div>
+        <div class="news-body">
+          <span class="news-tag tag-analysis">Análise</span>
+          <h3>Prazo de junho para acordo de paz em risco: Rússia recusa local proposto pelos EUA para negociações</h3>
+          <p>Os EUA estabeleceram o início do verão — junho de 2026 — como prazo para um acordo de paz entre Rússia e Ucrânia, mas as negociações permanecem em impasse. Moscou recusou-se a enviar uma delegação ao local proposto pelos americanos para o próximo ciclo de conversas. Os EUA também adiaram as tratativas anteriores devido à prioridade dada ao conflito no Oriente Médio. Zelensky reconheceu que a agenda americana está dividida e que o caminho para a paz exige maior pressão sobre Moscou.</p>
+        </div>
+        <div class="news-footer">
+          <span class="news-source">Fonte: <span class="src-name">CBS News / NPR</span></span>
+          <a class="news-link" href="https://www.cbsnews.com/news/ukraine-waiting-on-us-russia-next-round-peace-talks-zelenskyy/" target="_blank">Ver mais →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PAGE NAV -->
+<div class="page-nav">
+  <a href="2026-03-19.html">← Edição anterior (19 mar)</a>
+  <span class="current">20 de Março de 2026</span>
+  <a href="index.html">Ver arquivo →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>News of Wars</strong> — Cobertura diária dos principais conflitos mundiais.<br/>
+    Fontes: <strong>CNN</strong>, <strong>BBC</strong>, <strong>Al Jazeera</strong>, <strong>NBC News</strong>, <strong>PBS NewsHour</strong>, <strong>NPR</strong>, <strong>CBS News</strong>, <strong>Conselho da UE</strong>.<br/>
+    Edição de <strong>20 de Março de 2026</strong> · Nowruz — Ano Novo Persa · Gerado automaticamente.
+  </p>
+</footer>
+
+</body>
+</html>
